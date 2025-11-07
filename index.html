@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AricaTourChat · MVP</title>
+  <meta name="description" content="Chatbot turístico para Arica: atractivos, horarios, transporte y recomendaciones.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='0.9em' font-size='90'>🗺️</text></svg>">
+  <style>
+    :root {
+      --bg: #0b1220;
+      --panel: #121a2b;
+      --panel-2: #0f1626;
+      --text: #eef2ff;
+      --muted: #93a4c0;
+      --accent: #06b6d4;
+      --accent-2: #22c55e;
+      --warning: #f59e0b;
+      --radius: 20px;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+      background: radial-gradient(1200px 800px at 70% -10%, #123 0%, #0b1220 30%, #080d18 100%);
+      color: var(--text); display: grid; place-items: center; padding: 16px;
+    }
+    .app {
+      width: min(980px, 100%);
+      display: grid; gap: 14px;
+      grid-template-columns: 1fr;
+    }
+    header {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius);
+      padding: 18px 18px;
+      display: flex; align-items: center; gap: 14px;
+      backdrop-filter: blur(6px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    header .title { font-size: 18px; line-height: 1.2; }
+    header .subtitle { color: var(--muted); font-size: 13px; }
+    .pill {
+      padding: 6px 10px; border-radius: 999px; font-size: 12px; color: #061019;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2)); font-weight: 700;
+      letter-spacing: .02em;
+    }
+    .content { display: grid; gap: 14px; grid-template-columns: 1fr; }
+    .cards { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+    .card {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; padding: 14px; box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    }
+    .card h3 { margin: 0 0 6px; font-size: 16px; }
+    .card p { margin: 0; color: var(--muted); font-size: 13px; }
+    .chat {
+      background: var(--panel);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px; overflow: hidden; display: grid; grid-template-rows: auto 1fr auto;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+    }
+    .chat .messages { padding: 14px; height: 52vh; overflow-y: auto; display: grid; gap: 10px; align-content: start; background: var(--panel-2); }
+    .msg { display: flex; gap: 10px; }
+    .msg .bubble {
+      padding: 10px 12px; border-radius: 14px; max-width: 80%; font-size: 14px; line-height: 1.35; white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+    .ai .bubble { background: #0e1729; }
+    .me { justify-content: flex-end; }
+    .me .bubble { background: #0b2530; border-color: rgba(0,255,255,0.12); }
+    .input {
+      display: flex; gap: 10px; padding: 10px; background: var(--panel);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    input[type="text"] { flex: 1; background: #09101e; color: var(--text); border: 1px solid rgba(255,255,255,0.14); border-radius: 12px; padding: 12px; }
+    button {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2)); border: none; color: #061019; font-weight: 700;
+      padding: 10px 14px; border-radius: 12px; cursor: pointer;
+    }
+    .quick { display: flex; flex-wrap: wrap; gap: 8px; padding: 10px; border-top: 1px solid rgba(255,255,255,0.08); background: var(--panel); }
+    .quick button { background: #0f2332; color: var(--text); border: 1px solid rgba(255,255,255,0.1); }
+    .tag { font-size: 11px; color: var(--muted); }
+    .poi { margin-top: 6px; font-size: 13px; }
+    .poi a { color: #7dd3fc; text-decoration: none; }
+    .lang { margin-left: auto; display: flex; gap: 6px; }
+    .lang button { background: #0f2332; color: var(--text); border: 1px solid rgba(255,255,255,0.1); padding: 6px 10px; }
+    footer { color: var(--muted); font-size: 12px; text-align: center; }
+    .badge { display:inline-flex; gap:6px; align-items:center; font-size:12px; padding:6px 10px; border-radius:999px; background:#0f2332; border:1px solid rgba(255,255,255,0.1); }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <header>
+      <div class="pill">MVP</div>
+      <div>
+        <div class="title">AricaTourChat — Asistente Turístico Inteligente</div>
+        <div class="subtitle">Recomendaciones de atractivos, horarios, transporte y mapas. Español / English.</div>
+      </div>
+      <div class="lang" aria-label="Idioma / Language">
+        <button data-lang="es">ES</button>
+        <button data-lang="en">EN</button>
+      </div>
+    </header>
+
+    <section class="content">
+      <div class="cards">
+        <div class="card">
+          <h3>¿Cómo funciona?</h3>
+          <p>Escribe lo que buscas (p. ej., "playas", "Morro", "cómo ir a Cuevas de Anzota"). El bot devuelve opciones con enlace a Google Maps y datos clave. <span class="tag">(Prototipo sin backend; datos locales)</span></p>
+        </div>
+        <div class="card">
+          <h3>Privacidad</h3>
+          <p>No se recolectan datos personales. El contenido puede ser referencial (verifica horarios en sitio oficial).</p>
+        </div>
+        <div class="card">
+          <h3>Instalar en tu teléfono</h3>
+          <p>Agrega a pantalla de inicio desde el navegador para acceso rápido en aeropuerto/puerto.</p>
+        </div>
+      </div>
+
+      <div class="chat" role="region" aria-label="Chat de asistencia turística">
+        <div class="messages" id="messages"></div>
+        <div class="quick" id="quick">
+          <button>Top 5 imperdibles</button>
+          <button>Cómo moverme</button>
+          <button>Playas</button>
+          <button>Historia y cultura</button>
+          <button>Miradores</button>
+          <button>Gastronomía</button>
+        </div>
+        <div class="input">
+          <input id="input" type="text" placeholder="Escribe tu pregunta… (ej: Horario del Morro de Arica)" autocomplete="off" />
+          <button id="send">Enviar</button>
+        </div>
+      </div>
+
+      <footer>
+        <span class="badge">🧠 IA (reglas locales) · 🔗 Google Maps · 🚍 Transporte referencial</span>
+      </footer>
+    </section>
+  </div>
+
+  <script>
+    // === Datos locales (pueden reemplazarse por un JSON externo o API) ===
+    const POI = [
+      { id: 'morro', nombre: 'Morro de Arica (Mirador y Museo)', cats: ['historia','miradores'], horas: '09:00–17:00 (verificar)',
+        tips: 'Vista panorámica; llevar agua y bloqueador.',
+        maps: 'https://www.google.com/maps/search/?api=1&query=Morro+de+Arica' },
+      { id: 'chinchorro', nombre: 'Playa Chinchorro', cats: ['playas','familia'], horas: '24/7',
+        tips: 'Oleaje moderado; ciclovía y gastronomía cercana.',
+        maps: 'https://www.google.com/maps/search/?api=1&query=Playa+Chinchorro+Arica' },
+      { id: 'anzota', nombre: 'Cuevas de Anzota', cats: ['naturaleza','miradores','historia'], horas: '08:00–18:00 (verificar)',
+        tips: 'Sendero costero; posible cierre por marejadas.',
+        maps: 'https://www.google.com/maps/search/?api=1&query=Cuevas+de+Anzota' },
+      { id: 'azapa', nombre: 'Valle de Azapa (San Miguel de Azapa)', cats: ['historia','museos','naturaleza'], horas: '10:00–18:00 (verificar)',
+        tips: 'Museo Arqueológico; cultura Chinchorro.',
+        maps: 'https://www.google.com/maps/search/?api=1&query=Museo+San+Miguel+de+Azapa' },
+      { id: 'colchane', nombre: 'Plaza Colón y Catedral San Marcos', cats: ['historia','arquitectura'], horas: '09:00–19:00 (verificar)',
+        tips: 'Obra atribuida a Gustave Eiffel; cerca del casco histórico.',
+        maps: 'https://www.google.com/maps/search/?api=1&query=Catedral+San+Marcos+de+Arica' },
+      { id: 'corazones', nombre: 'Playa Corazones', cats: ['playas','naturaleza'], horas: '24/7',
+        tips: 'Paisaje rocoso icónico; precaución con oleaje.',
+        maps: 'https://www.google.com/maps/search/?api=1&query=Playa+Corazones+Arica' },
+    ];
+
+    const TRANSPORTE = [
+      { modo: 'Aeropuerto ➝ Centro', texto: 'Taxi/transfer (20–30 min aprox.) o buses locales. Consulta proveedor en aeropuerto.' },
+      { modo: 'Puerto ➝ Centro', texto: 'Se puede caminar según crucero; taxis autorizados disponibles.' },
+      { modo: 'Urbano', texto: 'Colectivos/micros con pago en efectivo; verifica recorrido en paradero.' },
+      { modo: 'Recomendación', texto: 'Usa Google Maps para rutas en tiempo real (enlaces incluidos en cada atractivo).'}
+    ];
+
+    const I18N = {
+      es: {
+        hello: '¡Bienvenida/o a Arica! Dime qué te interesa y te recomiendo lugares con mapas, tips y horarios referenciales.',
+        try: 'Prueba con: "Top 5 imperdibles", "Cómo moverme", "Playas", "Historia y cultura", "Miradores" o escribe tu pregunta.',
+        top5: 'Top 5 imperdibles de Arica:',
+        move: 'Opciones de transporte (referencial):',
+        found: (n) => `Encontré ${n} resultados:`,
+        none: 'No encontré resultados. Prueba con otra palabra (p. ej., "playas", "museos", "Morro").',
+        verify: '⚠️ Verifica horarios en la web oficial o en el acceso del lugar.',
+        openMaps: 'Abrir en Google Maps',
+      },
+      en: {
+        hello: 'Welcome to Arica! Tell me what you like and I will suggest places with maps, tips and reference hours.',
+        try: 'Try: "Top 5 must‑see", "How to get around", "Beaches", "History & culture", "Viewpoints", or type your question.',
+        top5: 'Top 5 must‑see in Arica:',
+        move: 'Transport options (reference):',
+        found: (n) => `I found ${n} results:`,
+        none: 'No results. Try another keyword (e.g., "beaches", "museums", "Morro").',
+        verify: '⚠️ Check opening hours on the official site or at the venue.',
+        openMaps: 'Open in Google Maps',
+      }
+    };
+
+    let LANG = 'es';
+    const $ = (s) => document.querySelector(s);
+    const messages = $('#messages');
+    const input = $('#input');
+
+    function addMsg(text, who='ai') {
+      const row = document.createElement('div');
+      row.className = `msg ${who}`;
+      row.innerHTML = `<div class="bubble">${text}</div>`;
+      messages.appendChild(row);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function poiItem(p) {
+      return `• <b>${p.nombre}</b> — <span class="tag">${p.horas}</span><div class="poi">${p.tips} · <a target="_blank" href="${p.maps}">${I18N[LANG].openMaps}</a></div>`;
+    }
+
+    function handleQuery(q) {
+      const text = q.toLowerCase();
+
+      // Rutas rápidas
+      if (/top\s*5|imperdible|imperdibles|must/.test(text)) {
+        addMsg(`<b>${I18N[LANG].top5}</b>\n` + POI.slice(0,5).map(p=>poiItem(p)).join('\n'));
+        addMsg(I18N[LANG].verify);
+        return;
+      }
+      if (/mover|transporte|how to get/.test(text)) {
+        addMsg(`<b>${I18N[LANG].move}</b>\n` + TRANSPORTE.map(t=>`• ${t.modo}: ${t.texto}`).join('\n'));
+        return;
+      }
+
+      // Búsqueda por categorías o nombre
+      const catMap = {
+        playas: ['playa','playas','corazones','chinchorro'],
+        historia: ['historia','museo','museos','morro','catedral','san marcos','azapa'],
+        miradores: ['mirador','miradores','morro','anzota'],
+        naturaleza: ['naturaleza','cuevas','anzota','valle','azapa']
+      };
+      let matched = POI.filter(p => p.nombre.toLowerCase().includes(text) || p.cats.some(c => text.includes(c)));
+      for (const [k, arr] of Object.entries(catMap)) {
+        if (arr.some(w => text.includes(w))) {
+          matched = [...new Set([...matched, ...POI.filter(p => p.cats.includes(k))])];
+        }
+      }
+      if (matched.length) {
+        addMsg(`<b>${I18N[LANG].found(matched.length)}</b>\n` + matched.map(p=>poiItem(p)).join('\n'));
+        addMsg(I18N[LANG].verify);
+      } else {
+        addMsg(I18N[LANG].none);
+      }
+    }
+
+    function init() {
+      addMsg('🖐️ ' + I18N[LANG].hello);
+      addMsg('💡 ' + I18N[LANG].try);
+    }
+
+    $('#send').addEventListener('click', () => {
+      const q = input.value.trim();
+      if (!q) return;
+      addMsg(q, 'me');
+      input.value = '';
+      setTimeout(() => handleQuery(q), 250);
+    });
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') $('#send').click();
+    });
+    $('#quick').addEventListener('click', (e) => {
+      if (e.target.tagName === 'BUTTON') {
+        input.value = e.target.textContent;
+        $('#send').click();
+      }
+    });
+    document.querySelectorAll('.lang button').forEach(b => b.addEventListener('click', () => {
+      LANG = b.dataset.lang;
+      messages.innerHTML = '';
+      init();
+    }));
+
+    init();
+  </script>
+</body>
+</html>
