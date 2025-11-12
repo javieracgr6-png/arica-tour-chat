@@ -93,7 +93,7 @@
         .hero {
             height: 200px;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-                        url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+                        url('https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Arica_desde_el_morro.jpg/800px-Arica_desde_el_morro.jpg');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -473,7 +473,7 @@
     </div>
 
     <script>
-        // BASE DE DATOS COMPLETA DE ARICA
+        // BASE DE DATOS COMPLETA DE ARICA CON IMÁGENES REALES
         const baseDeDatos = {
             "playas": [
                 {
@@ -481,7 +481,7 @@
                     "nombre": "Playa La Lisera",
                     "categoria": "playas",
                     "descripcion": "Playa familiar con aguas tranquilas, ideal para niños y deportes acuáticos. Arena fina y servicios completos.",
-                    "imagen": "https://aricasiempreactiva.cl/wp-content/uploads/2020/11/Playa-La-Lisera-Arica-Vista-Panoramica-1900x785-1.jpg",
+                    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Playa_La_Lisera%2C_Arica%2C_Chile.jpg/800px-Playa_La_Lisera%2C_Arica%2C_Chile.jpg",
                     "ubicacion": "Arica",
                     "distancia": "2.5 km del centro",
                     "horario": "6:00 AM - 20:00 PM",
@@ -493,7 +493,7 @@
                     "nombre": "Playa El Laucho",
                     "categoria": "playas",
                     "descripcion": "Playa urbana perfecta para surfistas principiantes y paseos en familia. Ambiente seguro y tranquilo.",
-                    "imagen": "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Playa_El_Laucho%2C_Arica%2C_Chile.jpg/800px-Playa_El_Laucho%2C_Arica%2C_Chile.jpg",
                     "ubicacion": "Arica",
                     "distancia": "1.8 km del centro",
                     "horario": "24 horas",
@@ -505,7 +505,7 @@
                     "nombre": "Playa Chinchorro",
                     "categoria": "playas",
                     "descripcion": "Una de las playas más extensas de Arica, ideal para caminatas, deportes y eventos al aire libre.",
-                    "imagen": "https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d3/Playa_Chinchorro%2C_Arica%2C_Chile.jpg/800px-Playa_Chinchorro%2C_Arica%2C_Chile.jpg",
                     "ubicacion": "Arica",
                     "distancia": "3.2 km del centro",
                     "horario": "6:00 AM - 22:00 PM",
@@ -517,12 +517,24 @@
                     "nombre": "Playa Las Machas",
                     "categoria": "playas",
                     "descripcion": "Conocida por su arena blanca y aguas cristalinas, perfecta para snorkel y observación marina.",
-                    "imagen": "https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Playa_Las_Machas%2C_Arica%2C_Chile.jpg/800px-Playa_Las_Machas%2C_Arica%2C_Chile.jpg",
                     "ubicacion": "Arica",
                     "distancia": "4.1 km del centro",
                     "horario": "7:00 AM - 19:00 PM",
                     "precio": "Gratuito",
                     "caracteristicas": ["Snorkel", "Zona rocosa", "Biodiversidad", "Fotografía"]
+                },
+                {
+                    "id": 11,
+                    "nombre": "Playa Coraceros",
+                    "categoria": "playas",
+                    "descripcion": "Playa ideal para surfistas experimentados con olas consistentes todo el año.",
+                    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Playa_Coraceros%2C_Arica%2C_Chile.jpg/800px-Playa_Coraceros%2C_Arica%2C_Chile.jpg",
+                    "ubicacion": "Arica",
+                    "distancia": "6.2 km del centro",
+                    "horario": "6:00 AM - 20:00 PM",
+                    "precio": "Gratuito",
+                    "caracteristicas": ["Surf", "Olas consistentes", "Estacionamiento", "Zona rocosa"]
                 }
             ],
 
@@ -561,7 +573,7 @@
                     "nombre": "Museo San Miguel de Azapa",
                     "categoria": "cultura",
                     "descripcion": "Museo que alberga las momias chinchorro más antiguas del mundo. Patrimonio cultural único.",
-                    "imagen": "https://images.unsplash.com/photo-1580502304784-8985b7eb7260?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Museo_Arqueol%C3%B3gico_San_Miguel_de_Azapa.jpg/800px-Museo_Arqueol%C3%B3gico_San_Miguel_de_Azapa.jpg",
                     "ubicacion": "Valle de Azapa",
                     "distancia": "13 km del centro",
                     "horario": "10:00 - 18:00",
@@ -573,12 +585,24 @@
                     "nombre": "Catedral de San Marcos",
                     "categoria": "cultura",
                     "descripcion": "Iglesia diseñada por Gustave Eiffel, ícono arquitectónico de Arica en pleno centro.",
-                    "imagen": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7f/Catedral_de_San_Marcos_de_Arica.jpg/800px-Catedral_de_San_Marcos_de_Arica.jpg",
                     "ubicacion": "Centro de Arica",
                     "distancia": "0.2 km del centro",
                     "horario": "8:00 - 20:00",
                     "precio": "Gratuito",
                     "caracteristicas": ["Arquitectura Eiffel", "Visitas guiadas", "Centro histórico"]
+                },
+                {
+                    "id": 14,
+                    "nombre": "Morro de Arica",
+                    "categoria": "cultura",
+                    "descripcion": "Icono histórico de Arica con museo de la Guerra del Pacífico y vista panorámica espectacular.",
+                    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Arica_desde_el_morro.jpg/800px-Arica_desde_el_morro.jpg",
+                    "ubicacion": "Arica",
+                    "distancia": "1.2 km del centro",
+                    "horario": "9:00 - 18:00",
+                    "precio": "$1.000 CLP",
+                    "caracteristicas": ["Vista panorámica", "Museo histórico", "Fotografía", "Mirador"]
                 }
             ],
 
@@ -588,7 +612,7 @@
                     "nombre": "Sandboard Dunas de Arica",
                     "categoria": "aventura",
                     "descripcion": "Experimenta el deporte extremo en las dunas más grandes de la costa. Instructores profesionales.",
-                    "imagen": "https://images.unsplash.com/photo-1575369058873-d88e0db6dccd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Dunas_de_Arica.jpg/800px-Dunas_de_Arica.jpg",
                     "ubicacion": "Cerro Marchante",
                     "distancia": "5 km del centro",
                     "horario": "9:00 - 18:00",
@@ -600,7 +624,7 @@
                     "nombre": "Trekking Parque Lauca",
                     "categoria": "aventura",
                     "descripcion": "Caminatas por uno de los parques nacionales más altos del mundo. Naturaleza andina única.",
-                    "imagen": "https://images.unsplash.com/photo-1588666309999-30847c5d13ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "imagen": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Parque_Nacional_Lauca.jpg/800px-Parque_Nacional_Lauca.jpg",
                     "ubicacion": "Parinacota",
                     "distancia": "145 km del centro",
                     "horario": "8:00 - 16:00",
@@ -609,7 +633,7 @@
                 }
             ],
 
-            "destacados": [1, 2, 7, 9, 3, 5]
+            "destacados": [1, 2, 7, 9, 14, 5, 3, 11]
         };
 
         // APLICACIÓN ARICAGO!
@@ -766,7 +790,8 @@
                 if (!atraccion) return;
 
                 // Modal simple con detalles
-                alert(`🏔️ ${atraccion.nombre}\n\n📍 ${atraccion.ubicacion} (${atraccion.distancia})\n\n📖 ${atraccion.descripcion}\n\n🕒 Horario: ${atraccion.horario}\n💰 Precio: ${atraccion.precio}\n\n✨ Características: ${atraccion.caracteristicas.join(', ')}`);
+                const especialidades = atraccion.especialidades ? `\n🍽️ Especialidades: ${atraccion.especialidades.join(', ')}` : '';
+                alert(`🏔️ ${atraccion.nombre}\n\n📍 ${atraccion.ubicacion} (${atraccion.distancia})\n\n📖 ${atraccion.descripcion}\n\n🕒 Horario: ${atraccion.horario}\n💰 Precio: ${atraccion.precio}${especialidades}\n\n✨ Características: ${atraccion.caracteristicas.join(', ')}`);
             }
         }
 
