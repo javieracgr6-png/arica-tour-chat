@@ -1,0 +1,147 @@
+{
+  "playas": [
+    {
+      "id": 1,
+      "nombre": "La Lisera",
+      "categoria": "playas",
+      "descripcion": "Playa familiar con aguas tranquilas, ideal para niños y deportes acuáticos",
+      "imagen": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "ubicacion": "Arica",
+      "distancia": "2.5 km del centro",
+      "coordenadas": {"lat": -18.4746, "lng": -70.3129},
+      "horario": "6:00 AM - 20:00 PM",
+      "precio": "Gratuito",
+      "caracteristicas": ["Estacionamiento", "Duchas", "Restaurantes cercanos", "Zona de picnic"]
+    },
+    {
+      "id": 2,
+      "nombre": "El Laucho",
+      "categoria": "playas",
+      "descripcion": "Playa urbana perfecta para surfistas principiantes y paseos en familia",
+      "imagen": "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "ubicacion": "Arica",
+      "distancia": "1.8 km del centro",
+      "coordenadas": {"lat": -18.4783, "lng": -70.3176},
+      "horario": "24 horas",
+      "precio": "Gratuito",
+      "caracteristicas": ["Zona de surf", "Quioscos", "Estacionamiento", "Seguridad"]
+    },
+    {
+      "id": 3,
+      "nombre": "Playa Chinchorro",
+      "categoria": "playas",
+      "descripcion": "Una de las playas más extensas de Arica, ideal para caminatas y deportes",
+      "imagen": "https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "ubicacion": "Arica",
+      "distancia": "3.2 km del centro",
+      "coordenadas": {"lat": -18.4667, "lng": -70.3083},
+      "horario": "6:00 AM - 22:00 PM",
+      "precio": "Gratuito",
+      "caracteristicas": ["Zona de juegos", "Anfiteatro", "Ciclovía", "Área de ejercicios"]
+    },
+    {
+      "id": 4,
+      "nombre": "Playa Las Machas",
+      "categoria": "playas",
+      "descripcion": "Conocida por su arena blanca y aguas cristalinas, perfecta para snorkel",
+      "imagen": "https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "ubicacion": "Arica",
+      "distancia": "4.1 km del centro",
+      "coordenadas": {"lat": -18.4833, "lng": -70.3250},
+      "horario": "7:00 AM - 19:00 PM",
+      "precio": "Gratuito",
+      "caracteristicas": ["Snorkel", "Zona rocosa", "Biodiversidad marina", "Fotografía"]
+    }
+  ],
+
+  "gastronomia": [
+    {
+      "id": 5,
+      "nombre": "Restaurante El Mariscal",
+      "categoria": "gastronomia",
+      "descripcion": "Especialistas en pescados y mariscos frescos de la costa aricana",
+      "imagen": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "ubicacion": "Centro de Arica",
+      "distancia": "0.5 km del centro",
+      "coordenadas": {"lat": -18.4745, "lng": -70.2976},
+      "horario": "12:00 - 23:00",
+      "precio": "$$",
+      "caracteristicas": ["Mariscos", "Terraza", "WiFi", "Reservas"],
+      "especialidades": ["Ceviche", "Machas a la parmesana", "Pescado frito"]
+    },
+    {
+      "id": 6,
+      "nombre": "La Casona del Pica",
+      "categoria": "gastronomia",
+      "descripcion": "Cocina tradicional chilena con ingredientes locales del valle de Azapa",
+      "imagen": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "ubicacion": "Valle de Azapa",
+      "distancia": "12 km del centro",
+      "coordenadas": {"lat": -18.5172, "lng": -70.1847},
+      "horario": "10:00 - 18:00",
+      "precio": "$$",
+      "caracteristicas": ["Comida local", "Productos orgánicos", "Estacionamiento", "Tours"],
+      "especialidades": ["Asado de cordero", "Humitas", "Aceitunas de Azapa"]
+    }
+  ],
+
+  "cultura": [
+    {
+      "id": 7,
+      "nombre": "Museo Arqueológico San Miguel de Azapa",
+      "categoria": "cultura",
+      "descripcion": "Museo que alberga las momias chinchorro más antiguas del mundo",
+      "imagen": "https://images.unsplash.com/photo-1580502304784-8985b7eb7260?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "ubicacion": "Valle de Azapa",
+      "distancia": "13 km del centro",
+      "coordenadas": {"lat": -18.5178, "lng": -70.1811},
+      "horario": "10:00 - 18:00 (Martes a Domingo)",
+      "precio": "$2.000 CLP",
+      "caracteristicas": ["Momias Chinchorro", "Guías", "Tienda de souvenirs", "Estacionamiento"]
+    },
+    {
+      "id": 8,
+      "nombre": "Catedral de San Marcos",
+      "categoria": "cultura",
+      "descripcion": "Iglesia diseñada por Gustave Eiffel, ícono arquitectónico de Arica",
+      "imagen": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "ubicacion": "Centro de Arica",
+      "distancia": "0.2 km del centro",
+      "coordenadas": {"lat": -18.4742, "lng": -70.2978},
+      "horario": "8:00 - 20:00",
+      "precio": "Gratuito",
+      "caracteristicas": ["Arquitectura Eiffel", "Visitas guiadas", "Fotografía", "Centro histórico"]
+    }
+  ],
+
+  "aventura": [
+    {
+      "id": 9,
+      "nombre": "Sandboard en Dunas de Arica",
+      "categoria": "aventura",
+      "descripcion": "Experimenta el deporte extremo en las dunas más grandes de la costa",
+      "imagen": "https://images.unsplash.com/photo-1575369058873-d88e0db6dccd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "ubicacion": "Cerro Marchante",
+      "distancia": "5 km del centro",
+      "coordenadas": {"lat": -18.4917, "lng": -70.3250},
+      "horario": "9:00 - 18:00",
+      "precio": "$15.000 CLP (incluye equipo)",
+      "caracteristicas": ["Alquiler de tablas", "Instructores", "Fotografía", "Seguridad"]
+    },
+    {
+      "id": 10,
+      "nombre": "Trekking Parque Nacional Lauca",
+      "categoria": "aventura",
+      "descripcion": "Caminatas por uno de los parques nacionales más altos del mundo",
+      "imagen": "https://images.unsplash.com/photo-1588666309999-30847c5d13ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+      "ubicacion": "Parinacota",
+      "distancia": "145 km del centro",
+      "coordenadas": {"lat": -18.0333, "lng": -69.2667},
+      "horario": "8:00 - 16:00",
+      "precio": "$25.000 CLP (tour guiado)",
+      "caracteristicas": ["Guías expertos", "Avistamiento de fauna", "Fotografía", "Naturaleza"]
+    }
+  ],
+
+  "destacados": [1, 2, 7, 9, 3, 5]
+}
