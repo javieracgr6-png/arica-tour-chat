@@ -6,7 +6,259 @@
     <title>AricaGo! - Descubre Arica y Parinacota</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Mantener todos los estilos anteriores y agregar: */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        :root {
+            --primary: #1a5276;
+            --secondary: #f39c12;
+            --accent: #e74c3c;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --gradient: linear-gradient(135deg, #1a5276, #2980b9);
+        }
+
+        body {
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 480px;
+            margin: 0 auto;
+            background: white;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        /* Header Styles */
+        header {
+            background: var(--gradient);
+            color: white;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 1.8rem;
+            background: var(--secondary);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-text h1 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            font-size: 0.7rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .header-actions i {
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 200px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .hero-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .hero-content p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Search Section */
+        .search-section {
+            padding: 1.5rem;
+            background: white;
+        }
+
+        .search-box {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1rem 1rem 1rem 3rem;
+            border-radius: 25px;
+            border: 2px solid #e0e0e0;
+            font-size: 1rem;
+            background: var(--light);
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 5px 15px rgba(26, 82, 118, 0.1);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1.2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+        }
+
+        .categories {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 1.5rem;
+        }
+
+        .category {
+            padding: 0.7rem 1.2rem;
+            background: var(--light);
+            border-radius: 20px;
+            white-space: nowrap;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .category.active {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(26, 82, 118, 0.3);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 0 1.5rem 2rem;
+        }
+
+        .section-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+
+        .section-title h2 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Cards */
+        .cards-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        .card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            background: white;
+            border: 1px solid #f0f0f0;
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .card-image {
+            height: 180px;
+            width: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--secondary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .card-content {
+            padding: 1.2rem;
+        }
+
+        .card-content h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .card-location {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-location i {
+            color: var(--accent);
+        }
+
         .card-description {
             font-size: 0.9rem;
             color: #666;
@@ -14,10 +266,18 @@
             line-height: 1.4;
         }
 
+        .card-features {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
         .no-results {
             text-align: center;
             padding: 3rem;
             color: #666;
+            grid-column: 1 / -1;
         }
 
         .no-results i {
@@ -26,14 +286,101 @@
             color: #ddd;
         }
 
-        .category {
+        /* Bottom Navigation */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 480px;
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 0.8rem 0;
+            box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+        }
+
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            color: #95a5a6;
             cursor: pointer;
-            user-select: none;
+            transition: all 0.3s;
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+            background: rgba(26, 82, 118, 0.1);
+        }
+
+        .nav-item i {
+            font-size: 1.3rem;
+        }
+
+        .nav-item span {
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: var(--dark);
+            color: white;
+            margin-top: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 1rem 0;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .copyright {
+            font-size: 0.8rem;
+            opacity: 0.7;
+            margin-top: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                border-radius: 0;
+            }
+            
+            .hero {
+                height: 180px;
+            }
+            
+            .hero-content h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
         <header>
             <div class="logo">
                 <div class="logo-icon">
@@ -44,8 +391,13 @@
                     <span>Explora • Descubre • Vive</span>
                 </div>
             </div>
+            <div class="header-actions">
+                <i class="fas fa-search"></i>
+                <i class="fas fa-user-circle"></i>
+            </div>
         </header>
 
+        <!-- Hero Section -->
         <div class="hero">
             <div class="hero-content">
                 <h2>¡Bienvenido a Arica!</h2>
@@ -53,6 +405,7 @@
             </div>
         </div>
 
+        <!-- Search Section -->
         <div class="search-section">
             <div class="search-box">
                 <i class="fas fa-search"></i>
@@ -67,19 +420,358 @@
             </div>
         </div>
 
+        <!-- Main Content -->
         <div class="main-content">
             <div class="section-title">
                 <h2 id="sectionTitle">Lugares Destacados</h2>
             </div>
 
             <div class="cards-container" id="cardsContainer">
-                <!-- Las tarjetas se cargan dinámicamente -->
+                <!-- Las tarjetas se cargarán dinámicamente aquí -->
             </div>
         </div>
 
-        <!-- Footer y navegación inferior se mantienen igual -->
+        <!-- Footer -->
+        <footer>
+            <div class="footer-logo">
+                <i class="fas fa-map-marked-alt"></i>
+            </div>
+            <h3>AricaGo!</h3>
+            <p>Tu guía turística de Arica y Parinacota</p>
+            
+            <div class="footer-links">
+                <a href="#">Inicio</a>
+                <a href="#">Lugares</a>
+                <a href="#">Contacto</a>
+                <a href="#">Ayuda</a>
+            </div>
+            
+            <div class="copyright">
+                © 2024 AricaGo! - Todos los derechos reservados
+            </div>
+        </footer>
+
+        <!-- Bottom Navigation -->
+        <div class="bottom-nav">
+            <div class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Inicio</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-compass"></i>
+                <span>Explorar</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-heart"></i>
+                <span>Favoritos</span>
+            </div>
+            <div class="nav-item">
+                <i class="fas fa-user"></i>
+                <span>Perfil</span>
+            </div>
+        </div>
     </div>
 
-    <script src="js/app.js"></script>
+    <script>
+        // BASE DE DATOS COMPLETA DE ARICA
+        const baseDeDatos = {
+            "playas": [
+                {
+                    "id": 1,
+                    "nombre": "Playa La Lisera",
+                    "categoria": "playas",
+                    "descripcion": "Playa familiar con aguas tranquilas, ideal para niños y deportes acuáticos. Arena fina y servicios completos.",
+                    "imagen": "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "ubicacion": "Arica",
+                    "distancia": "2.5 km del centro",
+                    "horario": "6:00 AM - 20:00 PM",
+                    "precio": "Gratuito",
+                    "caracteristicas": ["Estacionamiento", "Duchas", "Restaurantes", "Zona de picnic"]
+                },
+                {
+                    "id": 2,
+                    "nombre": "Playa El Laucho",
+                    "categoria": "playas",
+                    "descripcion": "Playa urbana perfecta para surfistas principiantes y paseos en familia. Ambiente seguro y tranquilo.",
+                    "imagen": "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "ubicacion": "Arica",
+                    "distancia": "1.8 km del centro",
+                    "horario": "24 horas",
+                    "precio": "Gratuito",
+                    "caracteristicas": ["Zona de surf", "Quioscos", "Estacionamiento", "Seguridad"]
+                },
+                {
+                    "id": 3,
+                    "nombre": "Playa Chinchorro",
+                    "categoria": "playas",
+                    "descripcion": "Una de las playas más extensas de Arica, ideal para caminatas, deportes y eventos al aire libre.",
+                    "imagen": "https://images.unsplash.com/photo-1505142468610-359e7d316be0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "ubicacion": "Arica",
+                    "distancia": "3.2 km del centro",
+                    "horario": "6:00 AM - 22:00 PM",
+                    "precio": "Gratuito",
+                    "caracteristicas": ["Zona de juegos", "Anfiteatro", "Ciclovía", "Área de ejercicios"]
+                },
+                {
+                    "id": 4,
+                    "nombre": "Playa Las Machas",
+                    "categoria": "playas",
+                    "descripcion": "Conocida por su arena blanca y aguas cristalinas, perfecta para snorkel y observación marina.",
+                    "imagen": "https://images.unsplash.com/photo-1519046904884-53103b34b206?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "ubicacion": "Arica",
+                    "distancia": "4.1 km del centro",
+                    "horario": "7:00 AM - 19:00 PM",
+                    "precio": "Gratuito",
+                    "caracteristicas": ["Snorkel", "Zona rocosa", "Biodiversidad", "Fotografía"]
+                }
+            ],
+
+            "gastronomia": [
+                {
+                    "id": 5,
+                    "nombre": "Restaurante El Mariscal",
+                    "categoria": "gastronomia",
+                    "descripcion": "Especialistas en pescados y mariscos frescos de la costa aricana. Terraza con vista al mar.",
+                    "imagen": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "ubicacion": "Centro de Arica",
+                    "distancia": "0.5 km del centro",
+                    "horario": "12:00 - 23:00",
+                    "precio": "$$",
+                    "caracteristicas": ["Mariscos", "Terraza", "WiFi", "Reservas"],
+                    "especialidades": ["Ceviche", "Machas parmesana", "Pescado frito"]
+                },
+                {
+                    "id": 6,
+                    "nombre": "La Casona del Pica",
+                    "categoria": "gastronomia",
+                    "descripcion": "Cocina tradicional chilena con ingredientes locales del valle de Azapa. Ambiente campestre.",
+                    "imagen": "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "ubicacion": "Valle de Azapa",
+                    "distancia": "12 km del centro",
+                    "horario": "10:00 - 18:00",
+                    "precio": "$$",
+                    "caracteristicas": ["Comida local", "Productos orgánicos", "Estacionamiento"],
+                    "especialidades": ["Asado de cordero", "Humitas", "Aceitunas Azapa"]
+                }
+            ],
+
+            "cultura": [
+                {
+                    "id": 7,
+                    "nombre": "Museo San Miguel de Azapa",
+                    "categoria": "cultura",
+                    "descripcion": "Museo que alberga las momias chinchorro más antiguas del mundo. Patrimonio cultural único.",
+                    "imagen": "https://images.unsplash.com/photo-1580502304784-8985b7eb7260?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "ubicacion": "Valle de Azapa",
+                    "distancia": "13 km del centro",
+                    "horario": "10:00 - 18:00",
+                    "precio": "$2.000 CLP",
+                    "caracteristicas": ["Momias Chinchorro", "Guías", "Tienda", "Estacionamiento"]
+                },
+                {
+                    "id": 8,
+                    "nombre": "Catedral de San Marcos",
+                    "categoria": "cultura",
+                    "descripcion": "Iglesia diseñada por Gustave Eiffel, ícono arquitectónico de Arica en pleno centro.",
+                    "imagen": "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "ubicacion": "Centro de Arica",
+                    "distancia": "0.2 km del centro",
+                    "horario": "8:00 - 20:00",
+                    "precio": "Gratuito",
+                    "caracteristicas": ["Arquitectura Eiffel", "Visitas guiadas", "Centro histórico"]
+                }
+            ],
+
+            "aventura": [
+                {
+                    "id": 9,
+                    "nombre": "Sandboard Dunas de Arica",
+                    "categoria": "aventura",
+                    "descripcion": "Experimenta el deporte extremo en las dunas más grandes de la costa. Instructores profesionales.",
+                    "imagen": "https://images.unsplash.com/photo-1575369058873-d88e0db6dccd?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "ubicacion": "Cerro Marchante",
+                    "distancia": "5 km del centro",
+                    "horario": "9:00 - 18:00",
+                    "precio": "$15.000 CLP",
+                    "caracteristicas": ["Alquiler de tablas", "Instructores", "Fotografía", "Seguridad"]
+                },
+                {
+                    "id": 10,
+                    "nombre": "Trekking Parque Lauca",
+                    "categoria": "aventura",
+                    "descripcion": "Caminatas por uno de los parques nacionales más altos del mundo. Naturaleza andina única.",
+                    "imagen": "https://images.unsplash.com/photo-1588666309999-30847c5d13ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+                    "ubicacion": "Parinacota",
+                    "distancia": "145 km del centro",
+                    "horario": "8:00 - 16:00",
+                    "precio": "$25.000 CLP",
+                    "caracteristicas": ["Guías expertos", "Avistamiento fauna", "Naturaleza"]
+                }
+            ],
+
+            "destacados": [1, 2, 7, 9, 3, 5]
+        };
+
+        // APLICACIÓN ARICAGO!
+        class AricaGoApp {
+            constructor() {
+                this.categoriaActual = 'todos';
+                this.init();
+            }
+
+            init() {
+                this.setupEventListeners();
+                this.mostrarDestacados();
+            }
+
+            setupEventListeners() {
+                // Categorías
+                document.querySelectorAll('.category').forEach(cat => {
+                    cat.addEventListener('click', (e) => {
+                        const categoria = e.target.getAttribute('data-category');
+                        this.filtrarPorCategoria(categoria);
+                    });
+                });
+
+                // Búsqueda
+                document.getElementById('searchInput').addEventListener('input', (e) => {
+                    this.buscarAtracciones(e.target.value);
+                });
+            }
+
+            filtrarPorCategoria(categoria) {
+                this.categoriaActual = categoria;
+                
+                // Actualizar categorías activas
+                document.querySelectorAll('.category').forEach(cat => {
+                    cat.classList.remove('active');
+                });
+                document.querySelector(`[data-category="${categoria}"]`).classList.add('active');
+
+                // Actualizar título
+                const titulo = document.getElementById('sectionTitle');
+                titulo.textContent = categoria === 'todos' ? 'Lugares Destacados' : this.getCategoriaNombre(categoria);
+
+                // Mostrar resultados
+                if (categoria === 'todos') {
+                    this.mostrarDestacados();
+                } else {
+                    this.mostrarResultados(categoria);
+                }
+            }
+
+            mostrarDestacados() {
+                const container = document.getElementById('cardsContainer');
+                const destacados = baseDeDatos.destacados.map(id => 
+                    this.encontrarAtraccionPorId(id)
+                ).filter(Boolean);
+
+                this.renderizarTarjetas(destacados, container);
+            }
+
+            mostrarResultados(categoria) {
+                const container = document.getElementById('cardsContainer');
+                const resultados = baseDeDatos[categoria] || [];
+                this.renderizarTarjetas(resultados, container);
+            }
+
+            buscarAtracciones(termino) {
+                if (termino.length < 2) {
+                    this.filtrarPorCategoria(this.categoriaActual);
+                    return;
+                }
+
+                const resultados = [];
+                Object.keys(baseDeDatos).forEach(categoria => {
+                    if (Array.isArray(baseDeDatos[categoria])) {
+                        baseDeDatos[categoria].forEach(atraccion => {
+                            if (this.coincideBusqueda(atraccion, termino)) {
+                                resultados.push(atraccion);
+                            }
+                        });
+                    }
+                });
+
+                const container = document.getElementById('cardsContainer');
+                this.renderizarTarjetas(resultados, container);
+            }
+
+            coincideBusqueda(atraccion, termino) {
+                const busqueda = termino.toLowerCase();
+                return (
+                    atraccion.nombre.toLowerCase().includes(busqueda) ||
+                    atraccion.descripcion.toLowerCase().includes(busqueda) ||
+                    atraccion.ubicacion.toLowerCase().includes(busqueda) ||
+                    (atraccion.especialidades && atraccion.especialidades.some(esp => 
+                        esp.toLowerCase().includes(busqueda)
+                    ))
+                );
+            }
+
+            encontrarAtraccionPorId(id) {
+                for (let categoria in baseDeDatos) {
+                    if (Array.isArray(baseDeDatos[categoria])) {
+                        const encontrado = baseDeDatos[categoria].find(a => a.id === id);
+                        if (encontrado) return encontrado;
+                    }
+                }
+                return null;
+            }
+
+            renderizarTarjetas(atracciones, container) {
+                if (atracciones.length === 0) {
+                    container.innerHTML = `
+                        <div class="no-results">
+                            <i class="fas fa-search"></i>
+                            <h3>No se encontraron resultados</h3>
+                            <p>Intenta con otros términos de búsqueda</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                container.innerHTML = atracciones.map(atraccion => `
+                    <div class="card" onclick="app.mostrarDetalle(${atraccion.id})">
+                        <div class="card-image" style="background-image: url('${atraccion.imagen}')">
+                            <div class="card-badge">${this.getCategoriaNombre(atraccion.categoria)}</div>
+                        </div>
+                        <div class="card-content">
+                            <h3>${atraccion.nombre}</h3>
+                            <div class="card-location">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>${atraccion.ubicacion} • ${atraccion.distancia}</span>
+                            </div>
+                            <p class="card-description">${atraccion.descripcion}</p>
+                            <div class="card-features">
+                                <span><i class="fas fa-clock"></i> ${atraccion.horario}</span>
+                                <span><i class="fas fa-tag"></i> ${atraccion.precio}</span>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            getCategoriaNombre(categoria) {
+                const nombres = {
+                    'playas': 'Playa',
+                    'gastronomia': 'Gastronomía',
+                    'cultura': 'Cultural',
+                    'aventura': 'Aventura'
+                };
+                return nombres[categoria] || categoria;
+            }
+
+            mostrarDetalle(id) {
+                const atraccion = this.encontrarAtraccionPorId(id);
+                if (!atraccion) return;
+
+                // Modal simple con detalles
+                alert(`🏔️ ${atraccion.nombre}\n\n📍 ${atraccion.ubicacion} (${atraccion.distancia})\n\n📖 ${atraccion.descripcion}\n\n🕒 Horario: ${atraccion.horario}\n💰 Precio: ${atraccion.precio}\n\n✨ Características: ${atraccion.caracteristicas.join(', ')}`);
+            }
+        }
+
+        // Inicializar la aplicación
+        const app = new AricaGoApp();
+    </script>
 </body>
 </html>
